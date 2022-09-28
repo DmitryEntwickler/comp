@@ -1,6 +1,7 @@
 // Copyright 2000-2021 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file.
 import androidx.compose.material.MaterialTheme
 import androidx.compose.desktop.ui.tooling.preview.Preview
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.OutlinedTextField
@@ -11,6 +12,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
@@ -24,11 +27,14 @@ fun App() {
     var mWallArea by remember { mutableStateOf("") }
 
     MaterialTheme {
-        Column {
+        Column(modifier = Modifier
+            .background(Color.Gray)
+            .fillMaxSize()) {
 
             Text(modifier = Modifier
                 .padding(16.dp),
-                text = "Fliesenrechenr"
+                text = "Fliesenrechenr",
+                textAlign = TextAlign.Center
             )
             Row (modifier = Modifier
                 .height(IntrinsicSize.Min))
@@ -80,7 +86,7 @@ fun App() {
 }
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
+    Window(onCloseRequest = ::exitApplication, title = "Kotlin Desktop-Compose") {
         App()
     }
 }
